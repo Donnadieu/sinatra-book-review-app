@@ -5,6 +5,6 @@ class SessionsController < ApplicationController
   end
 
   get '/signup'do
-    erb :create_user
+    erb :'/users/create_user'
   end
 end
