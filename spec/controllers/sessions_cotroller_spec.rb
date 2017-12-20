@@ -133,4 +133,11 @@ describe SessionsCotntoller do
       expect(page.current_path).to eq('/books')
     end
   end
+
+  context 'logged out' do
+    it 'does not let a user view the books index if not logged in' do
+      get '/books'
+      expect(last_response.location).to include("/login")
+    end
+  end
 end
