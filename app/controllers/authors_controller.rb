@@ -1,0 +1,3 @@
+class AuthorController < ApplicationController
+  
+end
