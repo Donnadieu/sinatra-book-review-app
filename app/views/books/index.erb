@@ -6,8 +6,12 @@
   </head>
   <body>
     <% Book.all.each do |book| %>
-      <%= book.name %><br>
-      <%= book.author.name%><br>
+    <div class="book-container">
+      <ul>
+        <a href="/books/<%= book.slug %>"><li><h3><%= book.name %></h3></li></a>
+        <a href="/authors/<%= book.author.slug %>"><p>By <%= book.author.name%></p></a>
+      </ul>
+    </div>
     <% end %>
   </body>
 </html>
