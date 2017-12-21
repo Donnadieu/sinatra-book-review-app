@@ -9,8 +9,14 @@ class ReviewsController < ApplicationController
   end
 
   get '/reviews/:id' do
-    if logged_in?
-    end     
-
+    if @review = Review.find(params[:id])
+      if logged_in? && current_user.id == @review.user_id
+        erb :'/reviews/show_review'
+      else
+        redirect '/login'
+      end
+    else
+      redirect
+    end
   end
 end
