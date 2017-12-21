@@ -14,13 +14,34 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/search' do
+    if !logged_in?
+      redirect '/login'
+    else
+      erb :search
+    end
+  end
+
   helpers do
+
     def logged_in?
       !!session[:user_id]
     end
 
     def current_user
       User.find(session[:user_id])
+    end
+
+    def logout
+      session.destroy
+    end
+
+    def complete_info_signup?
+      !params[:name].empty? && !params[:email].empty? && !params[:password].empty?
+    end
+
+    def complete_info_login?
+      !params[:name].empty? && !params[:password].empty?
     end
   end
 end

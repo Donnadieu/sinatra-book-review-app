@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SessionsCotntoller do
+describe SessionsController do
 
   describe "Signup Page" do
 
@@ -9,14 +9,14 @@ describe SessionsCotntoller do
       expect(last_response.status).to eq(200)
     end
 
-    it 'signup directs user to book index' do
+    it 'signup directs user to user show page' do
       params = {
         :name => "user test",
         :email => "tets@email.com",
         :password => "123456"
       }
       post '/signup', params
-      expect(last_response.location).to include("/books")
+      expect(last_response.location).to include("/users/user-test")
     end
 
     it 'does not let a user sign up without a username' do
@@ -52,7 +52,7 @@ describe SessionsCotntoller do
     it 'does not let a logged in user view the signup page' do
       user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
       params = {
-        :name => "user test",
+        :name => "User test",
         :email => "tets@email.com",
         :password => "123456"
       }
@@ -60,7 +60,7 @@ describe SessionsCotntoller do
       session = {}
       session[:user_id] = user.id
       get '/signup'
-      expect(last_response.location).to include('/books')
+      expect(last_response.location).to include('/users/user-test')
     end
   end
 
