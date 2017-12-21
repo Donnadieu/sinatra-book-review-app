@@ -113,10 +113,10 @@ describe ReviewsController do
     end
 
     context 'logged out' do
-      it 'does not let a user view a review' do
+      it 'does not let a user view a review if logged out' do
         user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
         review = Review.create(:content => "New review", :user_id => user.id)
-        get "/review/#{review.id}"
+        get "/reviews/#{review.id}"
         expect(last_response.location).to include("/login")
       end
     end
