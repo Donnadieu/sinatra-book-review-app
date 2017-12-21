@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= @author.name %></title>
+  </head>
+  <body>
+    <h1><%= @author.name %></h1>
+    <h3>Books:</h3>
+    <% @author.books.each do |book| %>
+      <%= book.name %>
+    <% end %>
+  </body>
+</html>

@@ -4,6 +4,7 @@ describe BooksController do
 
   before do
     @user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+    @author = Author.create(:name => "Paulo Coehlo")
     @book =  Book.create(:name => "The Alchemist", :author => @author)
   end
   describe 'index action' do

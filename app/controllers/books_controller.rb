@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   get '/books' do
+    binding.pry
     if logged_in?
       erb :'/books/index'
     else
