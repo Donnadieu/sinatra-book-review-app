@@ -5,6 +5,12 @@
     <title></title>
   </head>
   <body>
-    <h1>Welcome</h1>
+    <h1>Welcome, <%= @user.name %></h1>
+    <a href="/logout">Logout</a>
+    <br></br>
+    <% @user.reviews.each do |review| %>
+      <h4><%= review.book.name %></h4>
+      <%= review.content %>
+    <% end %>
   </body>
 </html>

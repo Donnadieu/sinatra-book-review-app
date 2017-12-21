@@ -7,4 +7,13 @@ class BooksController < ApplicationController
       redirect '/login'
     end
   end
+
+  get '/books/:slug' do
+    if logged_in?
+      @book = Book.find_by slug(params[:slug])
+      erb :'/books/show_book'
+    else
+      redirect '/login'
+    end
+  end
 end
