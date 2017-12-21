@@ -27,12 +27,13 @@ class BookScraper
         book_author = book.css("td a.authorName span").first.text
         book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
         # Save results
-        if book_author.empty? || book_author == nil
-          author = Author.create({name: "Not known"})
-          Book.create ({name: book_name, author: author})
-        else
-          author = Author.create({name: book_author})
-          Book.create ({name: book_name, author: author})
+        if !book_name.empty? || !book_name == nil
+          book = Book.create(name: book_name) unless Book.downcase_names.include?(book_name.downcase)
+        end
+        if !book_author.empty? || !book_author == nil
+          Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
+        elsif book_author.empty? || book_author == nil
+          Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
         end
       end
     elsif !no_results && next_page
@@ -42,12 +43,13 @@ class BookScraper
           book_author = book.css("td a.authorName span").first.text
           book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
           # Save results
-          if book_author.empty? || book_author == nil
-            author = Author.create({name: "Not known"})
-            Book.create ({name: book_name, author: author})
-          else
-            author = Author.create({name: book_author})
-            Book.create ({name: book_name, author: author})
+          if !book_name.empty? || !book_name == nil
+            Book.create(name: book_name) unless Book.downcase_names.include?(book_name.downcase)
+          end
+          if !book_author.empty? || !book_author == nil
+            Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
+          elsif book_author.empty? || book_author == nil
+            Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
           end
         end
         scraper.click(next_page)
