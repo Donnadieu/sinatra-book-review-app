@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    binding.pry
     erb :index
   end
 
@@ -41,7 +42,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def complete_info_login?
-      !params[:name].empty? && !params[:password].empty?
+      !params[:email].empty? && !params[:password].empty?
     end
   end
 end
