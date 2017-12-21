@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Books</title>
+  </head>
+  <body>
+    <% Book.all.each do |book| %>
+      <%= book.name %><br>
+      <%= book.author.name %><br>
+    <% end %>
+  </body>
+</html>

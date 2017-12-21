@@ -8,16 +8,18 @@ describe BooksController do
   end
   describe 'index action' do
     context 'logged in' do
-      it 'lets a user view the books page if logged in' do
+      it 'lets a user view the books index page if logged in' do
 
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
         fill_in(:password, :with => "123456")
-        click_button 'submit'
-        get "/books"
+        click_button 'Login'
+
+        visit "/books"
+
         expect(page.status_code).to eq(200)
-        expect(last_response.location).to include("/books")
+        expect(page.body).to include("#{@book.name}")
       end
     end
     context 'logged out' do
@@ -35,7 +37,7 @@ describe BooksController do
 
         fill_in(:email, :with => "test@email.com")
         fill_in(:password, :with => "123456")
-        click_button 'submit'
+        click_button 'Login'
 
         visit "/books/#{@book.slug}"
         expect(page.status_code).to eq(200)

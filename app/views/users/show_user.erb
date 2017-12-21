@@ -5,11 +5,11 @@
     <title></title>
   </head>
   <body>
-    <h1>Welcome, <%= @user.name %></h1>
+    <h1>Welcome, <%= current_user.name %></h1>
     <a href="/logout">Logout</a>
     <br></br>
-    <% @user.reviews.each do |review| %>
-      <h4><%= review.book.name %></h4>
+    <% @reviews.each do |review| %>
+      <%= review.book.name %>
       <%= review.content %>
     <% end %>
   </body>

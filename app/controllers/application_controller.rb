@@ -11,7 +11,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    binding.pry
+    erb :index    
   end
 
   get '/search' do

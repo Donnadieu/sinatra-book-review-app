@@ -13,6 +13,7 @@ describe ReviewsController do
         fill_in(:email, :with => "test@email.com")
         fill_in(:password, :with => "123456")
         click_button 'Login'
+        
         visit "/books/#{book.slug}"
         expect(page.status_code).to eq(200)
       end
