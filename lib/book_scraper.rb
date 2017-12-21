@@ -4,7 +4,7 @@ class BookScraper
     page.css("tr").count < 20 && page.css("tr").count > 0
   end
 
-  def self.search(search_term = "Paulo Coelho")
+  def self.search(search_term = "the analyst")
     # Instantiate a new web scraper with Mechanize
     scraper = Mechanize.new
     # hard-coding the address
@@ -27,13 +27,14 @@ class BookScraper
         book_author = book.css("td a.authorName span").first.text
         book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
         # Save results
-        if !book_name.empty? || !book_name == nil
-          book = Book.create(name: book_name) unless Book.downcase_names.include?(book_name.downcase)
+        if Author.is_name_in_database?(book_author)
+          @author = Author.find_by_downcase_name(book_author).first
+        else
+          @author = Author.create(name: book_author)
+          book = Book.create(name: book_name, author: @author)
         end
-        if !book_author.empty? || !book_author == nil
-          Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
-        elsif book_author.empty? || book_author == nil
-          Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
+        if !@author.is_book_by_author?(book_name)
+          book = Book.create(name: book_name, author: @author)
         end
       end
     elsif !no_results && next_page
@@ -43,13 +44,14 @@ class BookScraper
           book_author = book.css("td a.authorName span").first.text
           book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
           # Save results
-          if !book_name.empty? || !book_name == nil
-            Book.create(name: book_name) unless Book.downcase_names.include?(book_name.downcase)
+          if Author.is_name_in_database?(book_author)
+            @author = Author.find_by_downcase_name(book_author).first
+          else
+            @author = Author.create(name: book_author)
+            book = Book.create(name: book_name, author: @author)
           end
-          if !book_author.empty? || !book_author == nil
-            Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
-          elsif book_author.empty? || book_author == nil
-            Author.create({name: book_author}) unless Author.downcase_names.include?(book_author.downcase)
+          if !@author.is_book_by_author?(book_name)
+            book = Book.create(name: book_name, author: @author)
           end
         end
         scraper.click(next_page)
