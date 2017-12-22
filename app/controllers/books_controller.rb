@@ -2,10 +2,16 @@ class BooksController < ApplicationController
 
   get '/books' do
     if logged_in?
+      @books = Book.all
       erb :'/books/index'
     else
       redirect '/login'
     end
+  end
+
+  post '/books/search' do
+    binding.pry
+    BookScraper.search(params[:search_term])
   end
 
   get '/books/:slug' do

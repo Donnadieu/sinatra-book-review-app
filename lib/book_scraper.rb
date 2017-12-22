@@ -5,6 +5,7 @@ class BookScraper
   end
 
   def self.search(search_term = "the analyst by John Katzenbach")
+    count = 256
     # Instantiate a new web scraper with Mechanize
     scraper = Mechanize.new
     # hard-coding the address
@@ -20,7 +21,7 @@ class BookScraper
     no_results = results_page.css("h3.searchSubNavContainer").text == "No results."
     # Parse results
     if no_results
-      puts "Sorry No Books found with that query"
+      count
     elsif !next_page && one_page_results?(results_page)
       results_page.css("tr").each do |book|
         book_name = book.css("td a.bookTitle span").text

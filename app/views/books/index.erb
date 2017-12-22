@@ -7,7 +7,14 @@
   <body>
     <h1 align="center">Books</h1>
     <br></br>
-    <% Book.all.each do |book| %>
+    <div class="search-book">
+      <form action="/books/search" method="post">
+        <label for="search"><h3>Search for a book</h3></label>
+        <input type="text" name="search_term" id="search">
+        <input type="submit" name="" value="Search">
+      </form>
+    </div>
+    <% @books.each do |book| %>
     <div class="book-container">
       <ul>
         <a href="/books/<%= book.slug %>"><li><h3><%= book.name %></h3></li></a>
