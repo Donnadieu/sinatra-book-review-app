@@ -4,7 +4,7 @@ class BookScraper
     page.css("tr").count < 20 && page.css("tr").count > 0
   end
 
-  def self.search(search_term = "the analyst")
+  def self.search(search_term = "the analyst by John Katzenbach")
     # Instantiate a new web scraper with Mechanize
     scraper = Mechanize.new
     # hard-coding the address

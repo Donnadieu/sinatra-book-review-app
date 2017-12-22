@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
   post '/signup' do
     if !complete_info_signup? || logged_in?
       redirect to '/signup'
+    elsif user = User.find_by(email: params[:email])
+      redirect to '/login'
     else
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
@@ -28,11 +30,11 @@ class SessionsController < ApplicationController
 
   post '/login' do
     user = User.find_by(email: params[:email])
-    if !complete_info_login? && !user.authenticate
+    if !complete_info_login? && !user.authenticate || user == nil
       redirect to '/signup'
     else
       session[:user_id] = user.id
-      redirect "/users/#{current_user.slug}"
+      redirect "/users/#{user.slug}"
     end
   end
 

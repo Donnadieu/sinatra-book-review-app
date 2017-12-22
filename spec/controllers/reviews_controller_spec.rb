@@ -6,7 +6,8 @@ describe ReviewsController do
     context 'logged in' do
       it 'lets user view new review form if logged in' do
         user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
-        book =  Book.create(:name => "The Alchemist")
+        author = Author.create(:name => "Paulo Coehlo")
+        book =  Book.create(:name => "The Alchemist", :author => author)
 
         visit '/login'
 
@@ -15,22 +16,23 @@ describe ReviewsController do
         click_button 'Login'
 
         visit "/books/#{book.slug}"
-        expect(page.status_code).to eq(200)
-        expect(page).to have_field('content')
+
+        expect(page.body).to include('content')
       end
       it 'lets user create a review if they are logged in' do
         user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
-        book =  Book.create(:name => "The Alchemist")
+        author = Author.create(:name => "Paulo Coehlo")
+        book =  Book.create(:name => "The Alchemist", :author => author)
 
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
         fill_in(:password, :with => "123456")
-        click_button 'submit'
+        click_button 'Login'
 
         visit "/books/#{book.slug}"
-        fill_in(:content, :with => "I was good")
-        click_button 'Login'
+        fill_in(:content, :with => "It was good")
+        click_button 'submit'
 
         user = User.find_by(:email => "test@email.com")
         review = Review.find_by(:content => "It was good")
@@ -40,7 +42,8 @@ describe ReviewsController do
       end
       it 'does not let a user create a blank review' do
         user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
-        book =  Book.create(:name => "The Alchemist")
+        author = Author.create(:name => "Paulo Coehlo")
+        book =  Book.create(:name => "The Alchemist", :author => author)
 
         visit '/login'
 
@@ -59,8 +62,9 @@ describe ReviewsController do
     end
     context 'logged out' do
       it 'does not let user view new review form if not logged in' do
-        book =  Book.create(:name => "The Alchemist")
-        get "/books/#{book.slug}"
+        author = Author.create(:name => "Paulo Coehlo")
+        book =  Book.create(:name => "The Alchemist", :author => author)
+        get "/books/#{boo = Book.create(:name => "The Alchemist", :author => "Paulo Coehlo").slug}"
         expect(last_response.location).to include("/login")
       end
     end
