@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Auhtors</title>
-  </head>
-  <body>
-    <% Author.all.each do |author| %>
-      <%= author.name %><br>
-    <% end %>
-  </body>
-</html>
+<div class="author-container">
+  <% Author.all.each do |author| %>
+    <a href="/authors/<%= author.slug %>"><%= author.name %></a><br>
+  <% end %>
+</div>
