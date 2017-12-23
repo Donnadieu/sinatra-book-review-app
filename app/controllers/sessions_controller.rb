@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   use Rack::Flash
-  
+
   get '/signup'do
     if logged_in?
       redirect "/users/#{current_user.slug}"
@@ -11,8 +11,10 @@ class SessionsController < ApplicationController
 
   post '/signup' do
     if !complete_info_signup? || logged_in?
+      flash[:message] = "All fields must be filled in."
       redirect to '/signup'
     elsif user = User.find_by(email: params[:email])
+      flash[:message] = "Email already registered, please log-in."
       redirect to '/login'
     else
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])

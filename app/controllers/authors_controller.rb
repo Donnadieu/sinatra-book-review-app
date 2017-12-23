@@ -6,7 +6,6 @@ class AuthorsController < ApplicationController
       if params[:selected_letter] == nil
         @authors = Author.order(:name)
       else
-        binding.pry
         @authors = Author.where("name LIKE '#{@selected_letter}'")
       end
       erb :'/authors/authors'

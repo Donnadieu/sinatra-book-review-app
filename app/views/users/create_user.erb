@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Sign Up</title>
-  </head>
-  <body>
-    <h1>Sign up and start reviewing now</h1>
-    <form action="/signup" method="post">
-      <label for="name">Name </label>
-      <input type="text" name="name" id="name">
-      <label for="email">Email </label>
-      <input type="text" name="email" id="email">
-      <label for="name">Password</label>
-      <input type="password" name="password" id="password">
+<div class="header">
+  <div class="logo">
+    <p>
+      <a href="/">Home</a>
+    </p>
+  </div>
+</div>
 
-      <input type="submit" name="Create User" value="Signup">
-    </form>
+<h1>Sign up and start reviewing now</h1>
+<p class="flash_message">
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <% end %>
+</p>
+<div class="signup-container">
+  <form action="/signup" method="post">
+    <label for="name">Name </label>
+    <input type="text" name="name" id="name">
+    <label for="email">Email </label>
+    <input type="text" name="email" id="email">
+    <label for="name">Password</label>
+    <input type="password" name="password" id="password">
 
-  </body>
-</html>
+    <input type="submit" name="Create User" value="Signup">
+  </form>
+</div>

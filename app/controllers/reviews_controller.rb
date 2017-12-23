@@ -65,5 +65,6 @@ class ReviewsController < ApplicationController
   delete '/reviews/:id/delete' do
     @review = Review.find(params[:id])
     @review.destroy
+    redirect "/users/#{current_user.slug}"
   end
 end
