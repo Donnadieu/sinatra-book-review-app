@@ -1,6 +1,13 @@
 class Book < ActiveRecord::Base
+  include SearchCop
+
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
+
+  search_scope :search do
+    attributes :name
+    attributes author: "author.name"
+  end
 
   belongs_to :author
 

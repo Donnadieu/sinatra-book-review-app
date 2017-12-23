@@ -1,0 +1,88 @@
+<div class="books-container">
+  <div class="books-sidebar">
+    <form action="/books?letter=<%= @selected_letter %>" method="get">
+      <p>
+        <label for="selected_letter">Select A-Z</label>
+      </p>
+      <select name="selected_letter" id="selected_letter">
+        <option value="All">
+          All</option>
+        <option value="a%" <%=selected="selected" if @selected_letter == "A" %>>
+          A</option>
+        <option value="B" <%=selected="selected" if @selected_letter == "B" %>>
+          B</option>
+        <option value="C" <%=selected="selected" if @selected_letter == "C" %>>
+          C</option>
+        <option value="D" <%=selected="selected" if @selected_letter == "D" %>>
+          D</option>
+        <option value="E" <%=selected="selected" if @selected_letter == "E" %>>
+          E</option>
+        <option value="F" <%=selected="selected" if @selected_letter == "F" %>>
+          F</option>
+        <option value="G" <%=selected="selected" if @selected_letter == "G" %>>
+          G</option>
+        <option value="H" <%=selected="selected" if @selected_letter == "H" %>>
+          H</option>
+        <option value="I" <%=selected="selected" if @selected_letter == "I" %>>
+          I</option>
+        <option value="J" <%=selected="selected" if @selected_letter == "J" %>>
+          J</option>
+        <option value="K" <%=selected="selected" if @selected_letter == "K" %>>
+          K</option>
+        <option value="L" <%=selected="selected" if @selected_letter == "L" %>>
+          L</option>
+        <option value="M" <%=selected="selected" if @selected_letter == "M" %>>
+          M</option>
+        <option value="N" <%=selected="selected" if @selected_letter == "N" %>>
+          N</option>
+        <option value="O" <%=selected="selected" if @selected_letter == "O" %>>
+          O</option>
+        <option value="P" <%=selected="selected" if @selected_letter == "P" %>>
+          P</option>
+        <option value="Q" <%=selected="selected" if @selected_letter == "Q" %>>
+          Q</option>
+        <option value="R" <%=selected="selected" if @selected_letter == "R" %>>
+          R</option>
+        <option value="G" <%=selected="selected" if @selected_letter == "S" %>>
+          S</option>
+        <option value="T" <%=selected="selected" if @selected_letter == "T" %>>
+          T</option>
+        <option value="U" <%=selected="selected" if @selected_letter == "U" %>>
+          U</option>
+        <option value="V" <%=selected="selected" if @selected_letter == "V" %>>
+          V</option>
+        <option value="W" <%=selected="selected" if @selected_letter == "W" %>>
+          W</option>
+        <option value="X" <%=selected="selected" if @selected_letter == "X" %>>
+          X</option>
+        <option value="Y" <%=selected="selected" if @selected_letter == "Y" %>>
+          Y</option>
+        <option value="Z" <%=selected="selected" if @selected_letter == "Z" %>>
+          Z</option>
+      </select>
+
+      <p>
+        <label for="selected_status">Status</label>
+      </p>
+      <button class="grey" type="submit" value="Submit">Apply Filters</button>
+    </form>
+  </div>
+  <h1>Books</h1>
+  <div class="search-book">
+    <form action="/books/search" method="post">
+      <label for="search"><h3>Search for a book</h3></label>
+      <input type="text" name="search_term" id="search">
+      <input type="submit" name="" value="Search">
+    </form>
+  </div>
+  <div class="book-container">
+    <% @books.each do |book| %>
+    <div class="book-name">
+      <a href="/books/<%= book.slug %>"><h4><%= book.name %></a></h4>
+    </div>
+    <div class="book-author">
+      <a href="/authors/<%= book.author.slug %>"><h6>By <%= book.author.name%></a></h6>
+    </div>
+    <% end %>
+  </div>
+</div>

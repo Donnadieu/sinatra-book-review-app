@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem "tux"
 gem 'mechanize'
 gem 'rack-flash3'
+gem 'search_cop'
 
 group :test do
   gem 'rspec'

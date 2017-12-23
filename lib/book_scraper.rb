@@ -4,8 +4,8 @@ class BookScraper
     page.css("tr").count < 20 && page.css("tr").count > 0
   end
 
-  def self.search(search_term = "the analyst by John Katzenbach")
-    count = 256
+  def self.search(search_term = nil)
+    count = 0
     # Instantiate a new web scraper with Mechanize
     scraper = Mechanize.new
     # hard-coding the address
@@ -24,8 +24,8 @@ class BookScraper
       count
     elsif !next_page && one_page_results?(results_page)
       results_page.css("tr").each do |book|
-        book_name = book.css("td a.bookTitle span").text
-        book_author = book.css("td a.authorName span").first.text
+        book_name = book.css("td a.bookTitle span").text.strip
+        book_author = book.css("td a.authorName span").first.text.strip
         book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
         # Save results
         if Author.is_name_in_database?(book_author)
@@ -39,7 +39,7 @@ class BookScraper
         end
       end
     elsif !no_results && next_page
-      while next_page != nil && next_page.text.include?("next")
+      while next_page != nil && next_page.text.include?("next") && count <= 10
         results_page.css("tr").each do |book|
           book_name = book.css("td a.bookTitle span").text
           book_author = book.css("td a.authorName span").first.text
@@ -54,6 +54,7 @@ class BookScraper
           if !@author.is_book_by_author?(book_name)
             book = Book.create(name: book_name, author: @author)
           end
+          count += 1
         end
         scraper.click(next_page)
         results_page = scraper.click(next_page)
