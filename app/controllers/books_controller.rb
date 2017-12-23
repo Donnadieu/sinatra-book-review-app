@@ -10,7 +10,6 @@ class BooksController < ApplicationController
   end
 
   post '/books/search' do
-    binding.pry
     BookScraper.search(params[:search_term])
   end
 

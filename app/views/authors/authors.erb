@@ -1,0 +1,10 @@
+<div class="authors-container">
+  <div class="auhtor-sidebar">
+    <h1>Authors</h1>
+    <div class="author-container">
+      <% Author.all.each do |author| %>
+        <a href="/authors/<%= author.slug %>"><%= author.name %></a><br>
+      <% end %>
+    </div>
+  </div>
+</div>

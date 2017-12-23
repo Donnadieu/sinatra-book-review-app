@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
 
   get '/authors' do
     if logged_in?
-      erb :'/authors/index'
+      erb :'/authors/authors'
     else
       redirect '/login'
     end
