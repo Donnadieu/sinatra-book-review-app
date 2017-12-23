@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-
+  use Rack::Flash
+  
   get '/signup'do
     if logged_in?
       redirect "/users/#{current_user.slug}"
@@ -31,7 +32,8 @@ class SessionsController < ApplicationController
   post '/login' do
     user = User.find_by(email: params[:email])
     if !complete_info_login? && !user.authenticate || user == nil
-      redirect to '/signup'
+      flash[:message] = "Incorrect login details"
+      redirect to '/login'
     else
       session[:user_id] = user.id
       redirect "/users/#{user.slug}"
