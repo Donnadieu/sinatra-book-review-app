@@ -5,20 +5,19 @@
     </p>
   </div>
 </div>
-
 <h1>Please Log In</h1>
 <p class="flash_message">
-  <% if flash.has?(:message) %>
+  <%  if flash.has?(:message) %>
     <%= flash[:message] %>
   <% end %>
 </p>
 <div class="login-container">
   <form action="/login" method="post">
 
-    <label for="email">Email </label>
-    <input type="text" name="email" id="email">
-    <label for="name">Password</label>
-    <input type="password" name="password" id="password">
+    <label for="email"/>
+    <input type="email" id="email" name="email" placeholder="Email address" required="required"/>
+    <label<label for="password"/>
+    <input type="password" id="password" name="password" placeholder="Password" required="required"/>
 
     <input type="submit" name="login" value="Login">
   </form>

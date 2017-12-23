@@ -1,7 +1,17 @@
 <div class="header">
-  <div class="logo">
+  <div class="profile">
     <p>
-      <a href="/books">Home</a>
+      <a href="/users/<%= current_user.slug %>">Profile</a>
+    </p>
+  </div>
+  <div class="books-link">
+    <p>
+      <a href="/books">Books</a>
+    </p>
+  </div>
+  <div class="reviews-link">
+    <p>
+      <a href="/reviews">Lastest Reviews</a>
     </p>
   </div>
   <div class="logout">
@@ -12,8 +22,8 @@
 </div>
 
 <div class="authors-container">
-  <div class="auhtor-sidebar">
-    <h1>Authors</h1>
+  <h1>Authors</h1>
+  <div class="author-sidebar">
     <form action="/authors?letter=<%= @selected_letter %>" method="get">
       <p>
         <label for="selected_letter">Select A-Z</label>
@@ -80,13 +90,10 @@
       </p>
       <button class="grey" type="submit" value="Submit">Apply Filters</button>
     </form>
-
-    <div class="author-container">
-      <div class="author-name">
-        <% @authors.all.each do |author| %>
-          <a href="/authors/<%= author.slug %>"><h4><%= author.name %></h4></a><br>
-        <% end %>
-      </div>
-    </div>
   </div>
+  <% @authors.all.each do |author| %>
+    <div class="author_name">
+      <a href="/authors/<%= author.slug %>"><h4><%= author.name %></h4></a><br>
+    </div>
+  <% end %>
 </div>

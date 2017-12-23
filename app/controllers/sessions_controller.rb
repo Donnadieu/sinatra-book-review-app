@@ -10,11 +10,14 @@ class SessionsController < ApplicationController
   end
 
   post '/signup' do
-    if !complete_info_signup? || logged_in?
-      flash[:message] = "All fields must be filled in."
+    if !complete_info_signup?
+      flash[:message] = "All fields must be filled."
+      redirect to '/signup'
+    elsif !params[:email].include?("@")
+      flash[:message] = "Please enter a valid email"
       redirect to '/signup'
     elsif user = User.find_by(email: params[:email])
-      flash[:message] = "Email already registered, please log-in."
+      flash[:message] = "Email already registered."
       redirect to '/login'
     else
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])
@@ -32,13 +35,13 @@ class SessionsController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(email: params[:email])
-    if !complete_info_login? && !user.authenticate || user == nil
-      flash[:message] = "Incorrect login details"
-      redirect to '/login'
-    else
+    user = User.find_by(:email => params[:email])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/users/#{user.slug}"
+    else
+      flash[:message] = "Incorrect login details"
+      redirect to '/login'
     end
   end
 

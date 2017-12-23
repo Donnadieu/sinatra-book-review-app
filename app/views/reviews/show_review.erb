@@ -1,24 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Review</title>
-  </head>
-  <body>
-    <h1>Review by <%= current_user.name %></h1>
-    <h3><%= @review.book.name %></h3>
+<div class="header">
+  <div class="profile">
+    <p>
+      <a href="/users/<%= current_user.slug %>">Profile</a>
+    </p>
+  </div>
+  <div class="books-link">
+    <p>
+      <a href="/books">Books</a>
+    </p>
+  </div>
+  <div class="logo">
+    <p>
+      <a href="/authors">Authors</a>
+    </p>
+  </div>
+  <div class="reviews-link">
+    <p>
+      <a href="/reviews">Lastest Reviews</a>
+    </p>
+  </div>
+  <div class="logout">
+    <p>
+      <a href="/logout">Logout</a>
+    </p>
+  </div>
+</div>
+<h1>Your review of <%= @review.book.name %></h1>
+<div class="review-container">
+  <div class="review_content">
     <p><%= @review.content %></p>
-    <div class="edit-review">
-      <form action="/reviews/<%= @review.id %>/edit" method="get">
-          <p>
-            <button class="grey" type="submit" value="Edit Review">Edit Review</button>
-          </p>
-        </form>
-        <form action="/reviews/<%= @review.id %>/delete" method="POST">
-          <input id="hidden" type="hidden" name="_method" value="delete">
-          <p>
-            <button class="grey" type="submit" name="Delete Tweet" value="Delete Review">Delete Review</button>
-          <p>
-    </div>    
-  </body>
-</html>
+  </div>
+  <div class="edit-review">
+    <form action="/reviews/<%= @review.id %>/edit" method="get">
+      <p>
+        <button class="grey" type="submit" value="Edit Review">Edit Review</button>
+      </p>
+    </form>
+    <form action="/reviews/<%= @review.id %>/delete" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+        <p>
+          <button class="grey" type="submit" name="Delete Tweet" value="Delete Review">Delete Review</button>
+        <p>
+    </form>
+  </div>
+
+</div>

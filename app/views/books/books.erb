@@ -1,7 +1,17 @@
 <div class="header">
-  <div class="logo">
+  <div class="profile">
     <p>
-      <a href="/books">Home</a>
+      <a href="/users/<%= current_user.slug %>">Profile</a>
+    </p>
+  </div>
+  <div class="auhtor-link">
+    <p>
+      <a href="/authors">Authors</a>
+    </p>
+  </div>
+  <div class="reviews-link">
+    <p>
+      <a href="/reviews">Lastest Reviews</a>
     </p>
   </div>
   <div class="logout">
@@ -10,10 +20,8 @@
     </p>
   </div>
 </div>
-<div class="books-container">
-  <div class="books-sidebar">
-  </div>
-  <h1>Books</h1>
+<h1>Books</h1>
+<div class="books-sidebar">
   <div class="search-book">
     <form action="/books/search" method="post">
       <label for="search"><h3>Search for a book</h3></label>
@@ -21,7 +29,6 @@
       <input type="submit" name="" value="Search">
     </form>
   </div>
-
   <form action="/books?letter=<%= @selected_letter %>" method="get">
     <p>
       <label for="selected_letter">Select A-Z</label>
@@ -88,15 +95,14 @@
     </p>
     <button class="grey" type="submit" value="Submit">Apply Filters</button>
   </form>
-
-  <div class="book-container">
-    <% @books.each do |book| %>
-    <div class="book-name">
-      <a href="/books/<%= book.slug %>"><h4><%= book.name %></a></h4>
-    </div>
-    <div class="book-author">
-      <a href="/authors/<%= book.author.slug %>"><h6>By <%= book.author.name%></a></h6>
-    </div>
-    <% end %>
+</div>
+<div class="books-container">
+  <% @books.each do |book| %>
+  <div class="book_name">
+    <a href="/books/<%= book.slug %>"><h4><%= book.name %></a></h4>
   </div>
+  <div class="book_author">
+    <a href="/authors/<%= book.author.slug %>"><h6>By <%= book.author.name%></a></h6>
+  </div>
+  <% end %>
 </div>
