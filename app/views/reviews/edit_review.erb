@@ -1,31 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Edit Review</title>
-  </head>
-  <body>
-    <h1>Editing review by <%= current_user.name %></h1>
-    <h3><%= @review.book.name %></h3>
-    <div class="review">
-      <form action="/reviews/<%= @review.id %>" method="post">
-        <input type="hidden" name="_method" value="patch">
-        <label for="content">Review</label>
-        <br></br>
-        <textarea rows="4" cols="50" name="content" id="content">
-          <%= @review.content.strip %>
-        </textarea>
-        <br></br>
+<h1>Editing review by <%= current_user.name %></h1>
+<h3><%= @review.book.name %></h3>
+<div class="review">
+  <form action="/reviews/<%= @review.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="content">Review</label>
+    <br></br>
+    <textarea rows="4" cols="50" name="content" id="content">
+      <%= @review.content.strip %>
+    </textarea>
+    <br></br>
 
-        <input type="submit" value="Edit Review">
-        <form action="/reviews/<%= @review.id %>/delete" method="POST">
-          <input id="hidden" type="hidden" name="_method" value="delete">
-          <p>
-            <button class="grey" type="submit" name="Delete Tweet" value="Delete Review">Delete Review</button>
-          <p>
+    <input type="submit" value="Edit Review">
+    <form action="/reviews/<%= @review.id %>/delete" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <p>
+        <button class="grey" type="submit" name="Delete Tweet" value="Delete Review">Delete Review</button>
+      <p>
 
-      </form>
-      <br></br>
-    </div>
-  </body>
-</html>
+  </form>
+  <br></br>
+</div>

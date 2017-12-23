@@ -1,3 +1,15 @@
+<div class="header">
+  <div class="logo">
+    <p>
+      <a href="/books">Home</a>
+    </p>
+  </div>
+  <div class="logout">
+    <p>
+      <a href="/logout">Logout</a>
+    </p>
+  </div>
+</div>
 <div class="books-container">
   <div class="books-sidebar">
   </div>
@@ -76,7 +88,7 @@
     </p>
     <button class="grey" type="submit" value="Submit">Apply Filters</button>
   </form>
-  
+
   <div class="book-container">
     <% @books.each do |book| %>
     <div class="book-name">

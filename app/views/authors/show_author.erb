@@ -1,9 +1,25 @@
+<div class="header">
+  <div class="header">
+    <div class="logo">
+      <p>
+        <a href="/books">Home</a>
+      </p>
+    </div>
+    <div class="logout">
+      <p>
+        <a href="/logout">Logout</a>
+      </p>
+    </div>
+  </div>
+</div>
 <div class="author-container">
   <h1><%= @author.name %></h1>
   <h3>Books:</h3>
   <div class="author-books">
     <% @author.books.each do |book| %>
-      <a href="/books/<%= book.slug %>"><%= book.name %></a>
+    <div class="book-name">
+      <a href="/books/<%= book.slug %>"><h4><%= book.name %></a></h4>
+    </div>
     <% end %>
   </div>
 </div>
