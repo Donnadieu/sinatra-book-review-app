@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  use Rack::Flash
 
   get '/books' do
     if logged_in?

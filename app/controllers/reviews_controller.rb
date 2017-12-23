@@ -1,6 +1,5 @@
-require 'rack-flash'
-
 class ReviewsController < ApplicationController
+  use Rack::Flash
 
   get '/reviews' do
     if logged_in?
@@ -25,13 +24,19 @@ class ReviewsController < ApplicationController
 
   post '/reviews' do
     if params[:content].strip.empty?
+      flash[:message] = "Review must a have content"
       @book = Book.find(params[:book_id])
     elsif current_user.reviews.empty?
       Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
+      flash[:message] = "Review succesfully created"
       @book = Book.find(params[:book_id])
     else
       current_user.reviews.each do |review|
         if review.book_id == params[:book_id].to_i
+          @book = Book.find(params[:book_id])
+        else
+          Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
+          flash[:message] = "Review succesfully created"
           @book = Book.find(params[:book_id])
         end
       end
@@ -66,6 +71,7 @@ class ReviewsController < ApplicationController
   delete '/reviews/:id/delete' do
     @review = Review.find(params[:id])
     @review.destroy
+    flash[:message] = "Review succesfully deleted"
     redirect "/users/#{current_user.slug}"
   end
 end
