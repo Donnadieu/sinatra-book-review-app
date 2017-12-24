@@ -1,0 +1,160 @@
+/*////////// FONT //////////*/
+
+@font-face {
+  font-family: 'Julius Sans One', sans-serif;
+  src: url(https://fonts.googleapis.com/css?family=Julius+Sans+One);
+}
+
+/*////////// GLOBAL //////////*/
+body {
+  font-family: 'Julius Sans One', sans-serif;
+  text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1;
+  opacity: 1.0;
+}
+
+.flash_message {
+  color: red;
+  font-weight: bold;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  text-shadow: none;
+}
+
+.topnav-left a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav-right a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+h1
+{
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  height: 60px;
+  width: 300px;
+  font-family: 'Raleway', sans-serif;
+}
+
+input::-webkit-input-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input:-moz-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input::-moz-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input:-ms-input-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.wrapper {
+  background: url(../images/background.jpg) no-repeat center center fixed;
+  margin: 0 auto;
+  text-align: center;
+  border: 20px solid #AAA;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  line-height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  color: black;
+}
+
+h1 {
+  text-shadow: none;
+  text-align: center;
+  color: grey;
+  opacity: 0.95;
+}
+
+.selected_letter{
+  text-align: center;
+}
+
+.authors-container {
+  float: center;
+  text-align: center;
+}
+
+.authors-container a:hover {
+  color: white;
+}
+
+.authors-container a {
+  color: black;
+  text-align: center;
+  padding: 0px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
+  opacity: 0.95;
+}
+
+.author-sidebar p {
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

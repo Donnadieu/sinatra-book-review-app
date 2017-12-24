@@ -28,6 +28,11 @@
 <div class="book-container">
   <div class="book_name">
     <h1><%= @book.name %></h1>
+    <p class="flash_message">
+      <%  if flash.has?(:message) %>
+        <%= flash[:message] %>
+      <% end %>
+    </p>
   </div>
   <div class="book_author">
     <a href="/authors/<%= @book.author.slug %>"><h3>By <%= @book.author.name%></a></h3>

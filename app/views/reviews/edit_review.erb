@@ -26,10 +26,17 @@
   </div>
 </div>
 <h1>Editing review by <%= current_user.name %></h1>
-<h3><%= @review.book.name %></h3>
-<div class="content-container">
+<p class="flash_message">
+  <%  if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <% end %>
+</p>
+<a href="/books/<%= @review.book.slug %>"><h3><%= @review.book.name %></a>
+<br></br>
+<div class="review_form">
   <form action="/reviews/<%= @review.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
+
     <label for="content">Review</label>
     <br></br>
     <textarea rows="4" cols="50" name="content" id="content">
@@ -37,13 +44,15 @@
     </textarea>
     <br></br>
 
-    <input type="submit" value="Edit Review">
+    <input type="submit" name="edit" value="Edit Review">
+  </form>
+  <div class="delete-review">
     <form action="/reviews/<%= @review.id %>/delete" method="POST">
       <input id="hidden" type="hidden" name="_method" value="delete">
-      <p>
-        <button class="grey" type="submit" name="Delete Tweet" value="Delete Review">Delete Review</button>
-      <p>
+        <p>
+          <button class="grey" type="submit" name="Delete Review" value="Delete Review">Delete Review</button>
+        <p>
+    </form>
+  </div>
 
-  </form>
-  <br></br>
 </div>

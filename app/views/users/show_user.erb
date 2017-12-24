@@ -34,14 +34,21 @@
     <% @reviews.each do |review| %>
       <div class="review">
         <div class="review_book">
-          <h4><%= review.book.name %></h4>
+          <a href="/books/<%= review.book.slug %>"><h4><%= review.book.name %></h4></a>
         </div>
         <div class="review_content">
           <%= review.content %>
+        </div>
+        <div class="edit-review">
+          <form action="/reviews/<%= review.id %>" method="get">
+            <p>
+              <button class="grey" type="submit" value="Show Review">Show</button>
+            </p>
+          </form>
         </div>
       <% end %>
       </div>
   <% else %>
     <h3>You have no reviews yet start now!!!</h1>
-  <% end %> 
+  <% end %>
 </div>

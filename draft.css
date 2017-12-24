@@ -1,0 +1,267 @@
+/*////////// FONT //////////*/
+
+@font-face {
+  font-family: 'Raleway';
+  src: url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700);
+}
+
+/*////////// GLOBAL //////////*/
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1;
+}
+
+.flash_message {
+  color: red;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: .75rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+button {
+  height: 60px;
+  width: 300px;
+  text-align: center;
+  border: 0;
+  font-size: .9rem;
+}
+
+input[type="text"] {
+  height: 60px;
+  width: 300px;
+  font-family: 'Raleway', sans-serif;
+}
+
+input::-webkit-input-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input:-moz-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input::-moz-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input:-ms-input-placeholder {
+  font-family: 'Raleway', sans-serif;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+/*////////// USER PAGES //////////*/
+
+.user-container {
+  background: url(../images/background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 auto;
+  text-align: center;
+  border: 20px solid #AAA;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  line-height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+.user-container h1 {
+  padding-top: 150px;
+}
+
+.user-container h1, .user-container h2, .user-container h3, .user-container p, .user-container a, .user-container button, .user-container a:visited {
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+}
+
+.user-content {
+  margin-top: 50px;
+}
+
+.user-content input {
+  height: 60px;
+  width: 300px;
+  color: #AAA;
+  text-align: center;
+  font-size: 1rem;
+  border: 0;
+}
+
+.user-content button {
+  background-color: #000;
+  margin: 5px;
+}
+
+.user-content a {
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.user-content button:hover, .user-content a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*////////// MOVIE PAGES //////////*/
+
+.movie-container {
+  display: grid;
+  grid-template-columns: 100px 1fr 30px 70px 2fr 100px;
+  grid-template-rows: 50px 200px auto 100px;
+  border: 20px solid #AAA;
+  box-sizing: border-box;
+  min-height: 100vh;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+.movie-container button:hover, .movie-container a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.movie-container button {
+  background-color: #000;
+  margin-bottom: 10px;
+  font-family: 'Raleway', sans-serif;
+  color: #FFF;
+}
+
+.header {
+  grid-column: 2 / span 4;
+  grid-row: 2 / span 1;
+}
+
+.header a {
+  color: #AAA;
+  text-decoration: none;
+}
+
+.header a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  float: left;
+}
+
+.logout {
+  float: right;
+}
+
+.movie-sidebar {
+  grid-column: 2 / span 1;
+  grid-row: 3;
+  / span 1;
+}
+
+.movie-content {
+  grid-column: 5 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.movie-content h1, .movie-content label, .movie-content input, .movie-container option, .movie-container select, .movie-content p, .movie-content textarea {
+  font-family: 'Raleway', sans-serif;
+  color: #000;
+}
+
+.movie-content input[type="text"], .movie-content textarea, .movie-content option, .movie-content select {
+  width: 500px;
+  border: 1px solid #AAA;
+  margin: 0 0 10px 0;
+}
+
+.movie-content input[type="text"], .movie-content select {
+  height: 35px;
+}
+
+.movie-content input[type="text"]:focus, .movie-content textarea:focus, .movie-content option:focus, .movie-content select:focus {
+  border: 1px solid #000;
+}
+
+.movie-content h3 {
+  color: #AAA;
+}
+
+.movie-content h1 {
+  margin-bottom: 30px;
+}
+
+.movie-content a {
+  color: #000;
+  line-height: 2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.movie-content ul, .movie-content li {
+  list-style: none;
+  padding: 0;
+}
+
+.movie-content input[type="radio"] {
+  margin-bottom: 15px;
+}
+
+.movie-container .grey {
+  margin-top: 0;
+  background-color: #AAA;
+}
+
+.movie-container .top {
+  margin-top: 35px;
+}
+
+.movie-content .info {
+  margin-top: 45px;
+}
+
+.movie-content .notes {
+  line-height: 1.5;
+}
+
+.movie-container .your_movies {
+  margin-bottom: 50px;
+}

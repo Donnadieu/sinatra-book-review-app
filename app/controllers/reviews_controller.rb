@@ -59,19 +59,23 @@ class ReviewsController < ApplicationController
 
   patch '/reviews/:id' do
     if params[:content].strip.empty?
+      flash[:message] = "Review must have content"
       @review = Review.find(params[:id])
       redirect "/reviews/#{@review.id}/edit"
     else
+      flash[:message] = "Review succesfully updated"
       @review = Review.find(params[:id])
       @review.content = params[:content].strip
       @review.save
+      redirect "/reviews/#{@review.id}/edit"
     end
   end
 
   delete '/reviews/:id/delete' do
     @review = Review.find(params[:id])
+    @book = @review.book
     @review.destroy
     flash[:message] = "Review succesfully deleted"
-    redirect "/users/#{current_user.slug}"
+    redirect "/books/#{@book.slug}"
   end
 end
