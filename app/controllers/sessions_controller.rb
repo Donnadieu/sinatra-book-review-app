@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
       redirect to '/signup'
     elsif user = User.find_by(email: params[:email])
       flash[:message] = "Email already registered."
-      redirect to '/login'
+      binding.pry
+      erb :'/users/create_user'
     else
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
@@ -41,7 +42,8 @@ class SessionsController < ApplicationController
       redirect "/users/#{user.slug}"
     else
       flash[:message] = "Incorrect login details"
-      redirect to '/login'
+
+      erb :'/users/login'
     end
   end
 

@@ -36,7 +36,7 @@ p {
   font-size: 1rem;
 }
 
-button {
+.user-content > form:nth-child(3) > p:nth-child(1) > button:nth-child(1) {
   height: 60px;
   width: 300px;
   text-align: center;

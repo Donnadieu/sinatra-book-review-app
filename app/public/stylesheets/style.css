@@ -41,6 +41,7 @@ body {
 .flash_message {
   color: red;
   font-weight: bold;
+  text-shadow: none;
 }
 
 .topnav {
@@ -73,7 +74,7 @@ body {
 }
 
 h1 {
-  text-shadow: none;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   text-align: center;
   font-size: 3.5rem;
   line-height: 1.2;
@@ -97,6 +98,21 @@ h4 {
 p {
   font-size: 1.25rem;
   font-weight: bold;
+}
+.user-content > form:nth-child(n) > p > button {
+  height: 60px;
+  width: 300px;
+  text-align: center;
+  border: 0;
+  font-size: .9rem;
+  background-color: #d6d6d6;
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 3px 4px;
+}
+
+.user-content > form:nth-child(n) > p > button:hover{
+  background-color: white;
 }
 
 /* input[type="text"] {
@@ -150,9 +166,6 @@ input:focus:-ms-input-placeholder {
   text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
   opacity: 0.95;
 }
-
-
-
 
 
 .selected_letter{

@@ -5,10 +5,21 @@
     <title>Book Review Club</title>
   </head>
   <body>
-    <h1 align="Center">Welcome!</h1>
-    <h3 align="Center">Please sign up or log in to access your account</h3>
+    <div class="user-content">
+      <h1>Welcome!</h1>
+      <h3>Please sign up or log in to access your account</h3>
 
-    <h3 align="Center"><a href="/login">Login</a></h3>
-    <h3 align="Center"><a href="/signup">Sign Up</a></h3>
+      <form action="/login" method="get">
+        <p>
+          <button type="submit" value="Log in">Log In</button>
+        </p>
+      </form>
+      <form action="/signup" method="get">
+        <p>
+          <button type="submit" value="Log in">Sign Up</button>
+        </p>
+      </form>
+
+    </div>
   </body>
 </html>
