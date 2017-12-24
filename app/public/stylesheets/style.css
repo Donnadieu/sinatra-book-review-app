@@ -6,6 +6,29 @@
 }
 
 /*////////// GLOBAL //////////*/
+
+.wrapper {
+  background: url(../images/background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 auto;
+  text-align: center;
+  border: 20px solid #AAA;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  line-height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  color: black;
+}
+
 body {
   font-family: 'Julius Sans One', sans-serif;
   text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
@@ -49,17 +72,25 @@ body {
   text-decoration: none;
 }
 
-h1
-{
-  font-size: 2.5rem;
+h1 {
+  text-shadow: none;
+  text-align: center;
+  font-size: 3.5rem;
   line-height: 1.2;
+  color: grey;
+  opacity: 0.95;
 }
 
+
 h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
   font-size: 1rem;
 }
 
@@ -68,7 +99,7 @@ p {
   font-weight: bold;
 }
 
-input[type="text"] {
+/* input[type="text"] {
   height: 60px;
   width: 300px;
   font-family: 'Raleway', sans-serif;
@@ -104,32 +135,25 @@ input:focus::-moz-placeholder {
 
 input:focus:-ms-input-placeholder {
   color: transparent;
+} */
+
+.author_books a:hover {
+  color: white;
 }
 
-.wrapper {
-  background: url(../images/background.jpg) no-repeat center center fixed;
-  margin: 0 auto;
-  text-align: center;
-  border: 20px solid #AAA;
-  box-sizing: border-box;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  line-height: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
+.author_books a {
   color: black;
-}
-
-h1 {
-  text-shadow: none;
   text-align: center;
-  color: grey;
+  padding: 0px 0px;
+  text-decoration: none;
+  text-shadow: none;
+  text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
   opacity: 0.95;
 }
+
+
+
+
 
 .selected_letter{
   text-align: center;
@@ -149,12 +173,57 @@ h1 {
   text-align: center;
   padding: 0px 0px;
   text-decoration: none;
-  text-shadow: none;
   text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
   opacity: 0.95;
 }
 
-.author-sidebar p {
+.author-sidebar {
+  text-align: center;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  padding-bottom: 20px;
+}
+
+.books-sidebar {
+  text-align: center;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  padding-bottom: 20px;
+}
+
+.book-name a:hover {
   color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.book-name a {
+  text-align: left;
+  color: black;
+  float: left;
+  padding-left: 25px;
+  text-decoration: none;
+  opacity: 0.95;
+  font-size: 1rem;
+  width: 50%;
+}
+
+.book-author a:hover {
+  color: white;
+}
+
+.book-author a {
+  text-align: left;
+  color: black;
+  float: left;
+  text-decoration: none;
+  text-shadow: none;
+  padding-left: 50px;
+  font-size: 0.25rem;
+  width: 50%;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+}
+
+.line-separator{
+  height:1px;
+  background:#717171;
+  border-bottom:1px solid #313030;
+  width: 30%;
+  float: center;
 }

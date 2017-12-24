@@ -1,23 +1,12 @@
-<div class="header">
-  <div class="profile">
-    <p>
-      <a href="/users/<%= current_user.slug %>">Profile</a>
-    </p>
-  </div>
-  <div class="auhtor-link">
-    <p>
-      <a href="/authors">Authors</a>
-    </p>
-  </div>
-  <div class="reviews-link">
-    <p>
-      <a href="/reviews">Lastest Reviews</a>
-    </p>
-  </div>
-  <div class="logout">
-    <p>
-      <a href="/logout">Logout</a>
-    </p>
+<div class="topnav">
+  <div class="topnav-left">
+    <a href="/" class="bar-button"><b>Book</b> Review Club</a>
+    <a href="/authors" class="bar-button">Authors</a>
+    <a href="/reviews" class="bar-button">Lastest Reviews</a>
+    <div class="topnav-right">
+      <a href="/logout" class="bar-button">Logout</a>
+      <a href="/" class="bar-button">Profile</a>
+    </div>
   </div>
 </div>
 <h1>Books</h1>
@@ -29,80 +18,80 @@
       <input type="submit" name="" value="Search">
     </form>
   </div>
-  <form action="/books?letter=<%= @selected_letter %>" method="get">
-    <p>
-      <label for="selected_letter">Select A-Z</label>
-    </p>
-    <select name="selected_letter" id="selected_letter">
-      <option value="All">
-        All</option>
-      <option value="a%" <%=selected="selected" if @selected_letter == "A" %>>
-        A</option>
-      <option value="b%" <%=selected="selected" if @selected_letter == "B" %>>
-        B</option>
-      <option value="c%" <%=selected="selected" if @selected_letter == "C" %>>
-        C</option>
-      <option value="d%" <%=selected="selected" if @selected_letter == "D" %>>
-        D</option>
-      <option value="e%" <%=selected="selected" if @selected_letter == "E" %>>
-        E</option>
-      <option value="f%" <%=selected="selected" if @selected_letter == "F" %>>
-        F</option>
-      <option value="g%" <%=selected="selected" if @selected_letter == "G" %>>
-        G</option>
-      <option value="h%" <%=selected="selected" if @selected_letter == "H" %>>
-        H</option>
-      <option value="i%" <%=selected="selected" if @selected_letter == "I" %>>
-        I</option>
-      <option value="j%" <%=selected="selected" if @selected_letter == "J" %>>
-        J</option>
-      <option value="k%" <%=selected="selected" if @selected_letter == "K" %>>
-        K</option>
-      <option value="l%" <%=selected="selected" if @selected_letter == "L" %>>
-        L</option>
-      <option value="m%" <%=selected="selected" if @selected_letter == "M" %>>
-        M</option>
-      <option value="n%" <%=selected="selected" if @selected_letter == "N" %>>
-        N</option>
-      <option value="o%" <%=selected="selected" if @selected_letter == "O" %>>
-        O</option>
-      <option value="p%" <%=selected="selected" if @selected_letter == "P" %>>
-        P</option>
-      <option value="q%" <%=selected="selected" if @selected_letter == "Q" %>>
-        Q</option>
-      <option value="r%" <%=selected="selected" if @selected_letter == "R" %>>
-        R</option>
-      <option value="s%" <%=selected="selected" if @selected_letter == "S" %>>
-        S</option>
-      <option value="t%" <%=selected="selected" if @selected_letter == "T" %>>
-        T</option>
-      <option value="u%" <%=selected="selected" if @selected_letter == "U" %>>
-        U</option>
-      <option value="v%" <%=selected="selected" if @selected_letter == "V" %>>
-        V</option>
-      <option value="w%" <%=selected="selected" if @selected_letter == "W" %>>
-        W</option>
-      <option value="x%" <%=selected="selected" if @selected_letter == "X" %>>
-        X</option>
-      <option value="y%" <%=selected="selected" if @selected_letter == "Y" %>>
-        Y</option>
-      <option value="z%" <%=selected="selected" if @selected_letter == "Z" %>>
-        Z</option>
-    </select>
+  <div class="books-sidebar">
+    <form action="/books?letter=<%= @selected_letter %>" method="get">
+      <p>
+        <label for="selected_letter">Select A-Z</label>
+      </p>
+      <select name="selected_letter" id="selected_letter">
+        <option value="All">
+          All</option>
+        <option value="a%" <%=selected="selected" if @selected_letter == "A" %>>
+          A</option>
+        <option value="b%" <%=selected="selected" if @selected_letter == "B" %>>
+          B</option>
+        <option value="c%" <%=selected="selected" if @selected_letter == "C" %>>
+          C</option>
+        <option value="d%" <%=selected="selected" if @selected_letter == "D" %>>
+          D</option>
+        <option value="e%" <%=selected="selected" if @selected_letter == "E" %>>
+          E</option>
+        <option value="f%" <%=selected="selected" if @selected_letter == "F" %>>
+          F</option>
+        <option value="g%" <%=selected="selected" if @selected_letter == "G" %>>
+          G</option>
+        <option value="h%" <%=selected="selected" if @selected_letter == "H" %>>
+          H</option>
+        <option value="i%" <%=selected="selected" if @selected_letter == "I" %>>
+          I</option>
+        <option value="j%" <%=selected="selected" if @selected_letter == "J" %>>
+          J</option>
+        <option value="k%" <%=selected="selected" if @selected_letter == "K" %>>
+          K</option>
+        <option value="l%" <%=selected="selected" if @selected_letter == "L" %>>
+          L</option>
+        <option value="m%" <%=selected="selected" if @selected_letter == "M" %>>
+          M</option>
+        <option value="n%" <%=selected="selected" if @selected_letter == "N" %>>
+          N</option>
+        <option value="o%" <%=selected="selected" if @selected_letter == "O" %>>
+          O</option>
+        <option value="p%" <%=selected="selected" if @selected_letter == "P" %>>
+          P</option>
+        <option value="q%" <%=selected="selected" if @selected_letter == "Q" %>>
+          Q</option>
+        <option value="r%" <%=selected="selected" if @selected_letter == "R" %>>
+          R</option>
+        <option value="s%" <%=selected="selected" if @selected_letter == "S" %>>
+          S</option>
+        <option value="t%" <%=selected="selected" if @selected_letter == "T" %>>
+          T</option>
+        <option value="u%" <%=selected="selected" if @selected_letter == "U" %>>
+          U</option>
+        <option value="v%" <%=selected="selected" if @selected_letter == "V" %>>
+          V</option>
+        <option value="w%" <%=selected="selected" if @selected_letter == "W" %>>
+          W</option>
+        <option value="x%" <%=selected="selected" if @selected_letter == "X" %>>
+          X</option>
+        <option value="y%" <%=selected="selected" if @selected_letter == "Y" %>>
+          Y</option>
+        <option value="z%" <%=selected="selected" if @selected_letter == "Z" %>>
+          Z</option>
+      </select>
 
-    <p>
-      <label for="selected_status">Status</label>
-    </p>
-    <button class="grey" type="submit" value="Submit">Apply Filters</button>
-  </form>
+      <button class="grey" type="submit" value="Submit">Apply Filters</button>
+    </form>
+  </div>
 </div>
-<div class="books-container">
+<!-- <div class="books-container"> -->
   <% @books.each do |book| %>
-  <div class="book_name">
-    <a href="/books/<%= book.slug %>"><h4><%= book.name %></a></h4>
+  <div class="book-name">
+    <a href="/books/<%= book.slug %>"><h3><%= book.name %></a></h3>
   </div>
-  <div class="book_author">
-    <a href="/authors/<%= book.author.slug %>"><h6>By <%= book.author.name%></a></h6>
+  <div class="book-author">
+    <a href="/authors/<%= book.author.slug %>"><h4>By <%= book.author.name%></h4></a>
   </div>
+  <div class="line-separator"></div>
   <% end %>
-</div>
+<!-- </div> -->
