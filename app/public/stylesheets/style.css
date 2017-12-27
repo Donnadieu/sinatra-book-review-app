@@ -73,6 +73,15 @@ body {
   text-decoration: none;
 }
 
+a:hover{
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
 h1 {
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   text-align: center;
@@ -115,53 +124,13 @@ p {
   background-color: white;
 }
 
-/* input[type="text"] {
-  height: 60px;
-  width: 300px;
-  font-family: 'Raleway', sans-serif;
-}
-
-input::-webkit-input-placeholder {
-  font-family: 'Raleway', sans-serif;
-}
-
-input:-moz-placeholder {
-  font-family: 'Raleway', sans-serif;
-}
-
-input::-moz-placeholder {
-  font-family: 'Raleway', sans-serif;
-}
-
-input:-ms-input-placeholder {
-  font-family: 'Raleway', sans-serif;
-}
-
-input:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-
-input:focus:-moz-placeholder {
-  color: transparent;
-}
-
-input:focus::-moz-placeholder {
-  color: transparent;
-}
-
-input:focus:-ms-input-placeholder {
-  color: transparent;
-} */
-
 .author_books a:hover {
   color: white;
 }
 
 .author_books a {
-  color: black;
   text-align: center;
   padding: 0px 0px;
-  text-decoration: none;
   text-shadow: none;
   text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
   opacity: 0.95;
@@ -182,10 +151,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .authors-container a {
-  color: black;
   text-align: center;
   padding: 0px 0px;
-  text-decoration: none;
   text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
   opacity: 0.95;
 }
@@ -208,10 +175,8 @@ input:focus:-ms-input-placeholder {
 
 .book-name a {
   text-align: left;
-  color: black;
   float: left;
   padding-left: 25px;
-  text-decoration: none;
   opacity: 0.95;
   font-size: 1rem;
   width: 50%;
@@ -223,9 +188,7 @@ input:focus:-ms-input-placeholder {
 
 .book-author a {
   text-align: left;
-  color: black;
   float: left;
-  text-decoration: none;
   text-shadow: none;
   padding-left: 50px;
   font-size: 0.25rem;
@@ -239,4 +202,12 @@ input:focus:-ms-input-placeholder {
   border-bottom:1px solid #313030;
   width: 30%;
   float: center;
+}
+
+.book_name h1{
+  font-size: 1.5rem;
+}
+
+.book_author h3 {
+  font-size: 0.75rem;
 }
