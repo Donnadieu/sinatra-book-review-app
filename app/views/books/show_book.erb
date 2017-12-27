@@ -6,7 +6,7 @@
     <a href="/reviews" class="bar-button">Lastest Reviews</a>
     <div class="topnav-right">
       <a href="/logout" class="bar-button">Logout</a>
-      <a href="/" class="bar-button">Profile</a>
+      <a href="/users/<%= current_user.slug %>" class="bar-button">Profile</a>
     </div>
   </div>
 </div>
@@ -24,7 +24,7 @@
     <a href="/authors/<%= @book.author.slug %>"><h3>By <%= @book.author.name%></a></h3>
   </div>
   <div class="book_cover">
-    <img src="<%= @book.cover_url %>" alt="@book.name" width="246" height="367">
+    <img src="<%= @book.cover_url %>" alt="<%= @book.name %>" width="246" height="367">
   </div>
   <div class="book_description">
     <p>

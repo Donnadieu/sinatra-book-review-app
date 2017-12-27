@@ -5,21 +5,21 @@ class SessionsController < ApplicationController
     if logged_in?
       redirect "/users/#{current_user.slug}"
     else
+      binding.pry
       erb :'/users/create_user'
     end
   end
 
   post '/signup' do
-    if !complete_info_signup?
-      flash[:message] = "All fields must be filled."
-      redirect to '/signup'
-    elsif !params[:email].include?("@")
-      flash[:message] = "Please enter a valid email"
-      redirect to '/signup'
-    elsif user = User.find_by(email: params[:email])
+    # if !complete_info_signup?
+    #   flash[:message] = "All fields must be filled."
+    #   redirect to '/signup'
+    # if !params[:email].include?("@")
+    #   flash[:message] = "Please enter a valid email"
+    #   redirect to '/signup'
+    if user = User.find_by(email: params[:email])
       flash[:message] = "Email already registered."
-      binding.pry
-      erb :'/users/create_user'
+      redirect to "/login"
     else
       @user = User.create(name: params[:name], email: params[:email], password: params[:password])
       session[:user_id] = @user.id

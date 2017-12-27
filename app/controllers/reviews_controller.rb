@@ -24,24 +24,23 @@ class ReviewsController < ApplicationController
 
   post '/reviews' do
     if params[:content].strip.empty?
-      flash[:message] = "Review must a have content"
+      flash[:message] = "Review must have content"
       @book = Book.find(params[:book_id])
     elsif current_user.reviews.empty?
       Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
       flash[:message] = "Review succesfully posted"
       @book = Book.find(params[:book_id])
     else
-      current_user.reviews.each do |review|
-        if review.book_id == params[:book_id].to_i
-          @book = Book.find(params[:book_id])
-        else
-          Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
-          flash[:message] = "Review succesfully created"
-          @book = Book.find(params[:book_id])
-        end
+      if current_user.book_ids.include?(params[:book_id].to_i)
+        @book = Book.find(params[:book_id])
+        flash[:message] = "You've already reviewed this book"
+      else
+        Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
+        flash[:message] = "Review succesfully posted"
+        @book = Book.find(params[:book_id])
       end
     end
-    redirect "/books/#{@book.slug}"
+    redirect to "/books/#{@book.slug}"
   end
 
   get '/reviews/:id/edit' do
