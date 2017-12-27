@@ -4,6 +4,25 @@ class BookScraper
     page.css("tr").count < 20 && page.css("tr").count > 0
   end
 
+  def self.scrape_attributes(page, count)
+    page.css("tr").each do |book|
+      book_name = book.css("td a.bookTitle span").text
+      book_author = book.css("td a.authorName span").first.text
+      book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
+      # Save results
+      if Author.is_name_in_database?(book_author)
+        @author = Author.find_by_downcase_name(book_author).first
+      else
+        @author = Author.create(name: book_author)
+        book = Book.create(name: book_name, author: @author)
+      end
+      if !@author.is_book_by_author?(book_name)
+        book = Book.create(name: book_name, author: @author)
+      end
+      count += 1
+    end
+  end
+
   def self.search(search_term = nil)
     count = 0
     # Instantiate a new web scraper with Mechanize
@@ -23,39 +42,10 @@ class BookScraper
     if no_results
       count
     elsif !next_page && one_page_results?(results_page)
-      results_page.css("tr").each do |book|
-        book_name = book.css("td a.bookTitle span").text.strip
-        book_author = book.css("td a.authorName span").first.text.strip
-        book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
-        # Save results
-        if Author.is_name_in_database?(book_author)
-          @author = Author.find_by_downcase_name(book_author).first
-        else
-          @author = Author.create(name: book_author)
-          book = Book.create(name: book_name, author: @author)
-        end
-        if !@author.is_book_by_author?(book_name)
-          book = Book.create(name: book_name, author: @author)
-        end
-      end
+      scrape_attributes(results_page)
     elsif !no_results && next_page
       while next_page != nil && next_page.text.include?("next") && count <= 10
-        results_page.css("tr").each do |book|
-          book_name = book.css("td a.bookTitle span").text
-          book_author = book.css("td a.authorName span").first.text
-          book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
-          # Save results
-          if Author.is_name_in_database?(book_author)
-            @author = Author.find_by_downcase_name(book_author).first
-          else
-            @author = Author.create(name: book_author)
-            book = Book.create(name: book_name, author: @author)
-          end
-          if !@author.is_book_by_author?(book_name)
-            book = Book.create(name: book_name, author: @author)
-          end
-          count += 1
-        end
+        scrape_attributes(results_page, count)
         scraper.click(next_page)
         results_page = scraper.click(next_page)
         next_page = results_page.at("a.next_page")
