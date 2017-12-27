@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20171219040346) do
 
   create_table "books", force: :cascade do |t|
     t.string "name"
+    t.string "description"
+    t.string "cover_url"
     t.integer "author_id"
     t.integer "user_id"
     t.integer "rating"
