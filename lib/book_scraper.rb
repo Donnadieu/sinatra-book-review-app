@@ -7,7 +7,7 @@ class BookScraper
   def self.scrape_attributes(page)
     count = 0
     page.css("tr").each do |book|
-      while count <= 5
+      if count < 5
         book_name = book.css("td a.bookTitle span").text
         book_author = book.css("td a.authorName span").first.text
         book_url = "https://www.goodreads.com/#{book.css("td a.bookTitle").attr('href').text}"
@@ -23,6 +23,7 @@ class BookScraper
           description_array.pop
           book.description = description_array.join(" ")
           book.cover_url = book_page.css("#coverImage").attr("src").text
+          book.save
         end
         if !@author.is_book_by_author?(book_name)
           book = Book.create(name: book_name, author: @author)
@@ -31,9 +32,9 @@ class BookScraper
           description_array = book_page.css("#description").text.split
           description_array.pop
           book.description = description_array.join(" ")
-          book.cover_url = book_page.css("#coverImage").attr("src").text
+          book.cover_url = book_page.css("#coverImage").attr("src").text unless book_page.css("#coverImage").attr("src") == nil
         end
-        count +=1
+        count += 1
       end
     end
   end
@@ -61,6 +62,7 @@ class BookScraper
     end
   end
 end
+
 # elsif !next_page && one_page_results?(results_page)
 #   scrape_attributes(results_page)
 # elsif next_page

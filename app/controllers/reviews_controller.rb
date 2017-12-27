@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
       @book = Book.find(params[:book_id])
     elsif current_user.reviews.empty?
       Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
-      flash[:message] = "Review succesfully created"
+      flash[:message] = "Review succesfully posted"
       @book = Book.find(params[:book_id])
     else
       current_user.reviews.each do |review|
