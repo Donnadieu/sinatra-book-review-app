@@ -4,7 +4,7 @@ class BookScraper
     page.css("tr").count < 20 && page.css("tr").count > 0
   end
 
-  def self.scrape_attributes(page, count)
+  def self.scrape_attributes(page)
     page.css("tr").each do |book|
       book_name = book.css("td a.bookTitle span").text
       book_author = book.css("td a.authorName span").first.text
@@ -19,7 +19,6 @@ class BookScraper
       if !@author.is_book_by_author?(book_name)
         book = Book.create(name: book_name, author: @author)
       end
-      count += 1
     end
   end
 
@@ -43,12 +42,13 @@ class BookScraper
       count
     elsif !next_page && one_page_results?(results_page)
       scrape_attributes(results_page)
-    elsif !no_results && next_page
-      while next_page != nil && next_page.text.include?("next") && count <= 10
-        scrape_attributes(results_page, count)
+    elsif next_page
+      while next_page != nil && next_page.text.include?("next") && count <= 1
+        scrape_attributes(results_page)
         scraper.click(next_page)
         results_page = scraper.click(next_page)
         next_page = results_page.at("a.next_page")
+        count += 1
       end
     end
   end
