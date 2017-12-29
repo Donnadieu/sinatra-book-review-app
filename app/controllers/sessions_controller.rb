@@ -1,31 +1,6 @@
 class SessionsController < ApplicationController
   use Rack::Flash
-
-  get '/signup'do
-    if logged_in?
-      redirect "/users/#{current_user.slug}"
-    else
-      erb :'/users/create_user'
-    end
-  end
-
-  post '/signup' do
-    # if !complete_info_signup?
-    #   flash[:message] = "All fields must be filled."
-    #   redirect to '/signup'
-    # if !params[:email].include?("@")
-    #   flash[:message] = "Please enter a valid email"
-    #   redirect to '/signup'
-    if user = User.find_by(email: params[:email])
-      flash[:message] = "Email already registered."
-      redirect to "/login"
-    else
-      @user = User.create(name: params[:name], email: params[:email], password: params[:password])
-      session[:user_id] = @user.id
-      redirect to "/users/#{@user.slug}"
-    end
-  end
-
+    
   get '/login' do
     if logged_in?
       redirect "/users/#{current_user.slug}"
@@ -41,8 +16,26 @@ class SessionsController < ApplicationController
       redirect "/users/#{user.slug}"
     else
       flash[:message] = "Incorrect login details"
+      redirect "/login"
+    end
+  end
 
-      erb :'/users/login'
+  get '/signup'do
+    if logged_in?
+      redirect "/users/#{current_user.slug}"
+    else
+      erb :'/users/create_user'
+    end
+  end
+
+  post '/signup' do
+    if user = User.find_by(email: params[:email])
+      flash[:message] = "Email already registered."
+      redirect "/login"
+    else
+      @user = User.create(name: params[:name], email: params[:email], password: params[:password])
+      session[:user_id] = @user.id
+      redirect "/users/#{@user.slug}"
     end
   end
 

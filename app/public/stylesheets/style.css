@@ -15,7 +15,6 @@
   background-size: cover;
   margin: 0 auto;
   text-align: center;
-  /* border: 10px solid #AAA; */
   box-sizing: border-box;
   min-height: 100vh;
   display: flex;
@@ -239,4 +238,9 @@ p {
 
 .review_form-container {
   padding-bottom: 25px;
+}
+
+.review_content {
+  font-style: italic;
+  font-size: 1rem;
 }

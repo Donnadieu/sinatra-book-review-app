@@ -1,7 +1,7 @@
 require './config/environment'
 require 'rack-flash'
 
-class ApplicationController < Sinatra::Base
+class ApplicationController < Sinatra::Base  
 
   configure do
     set :public_folder, 'app/public'
@@ -12,14 +12,6 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     erb :index
-  end
-
-  get '/search' do
-    if !logged_in?
-      redirect '/login'
-    else
-      erb :search
-    end
   end
 
   helpers do

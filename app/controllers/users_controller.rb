@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  use Rack::Flash
 
   get '/users/:slug' do
     if logged_in? && current_user

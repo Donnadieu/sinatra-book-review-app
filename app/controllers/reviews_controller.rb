@@ -26,6 +26,7 @@ class ReviewsController < ApplicationController
     if params[:content].strip.empty?
       flash[:message] = "Review must have content"
       @book = Book.find(params[:book_id])
+      redirect to "/books/#{@book.slug}"
     elsif current_user.reviews.empty?
       Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
       flash[:message] = "Review succesfully posted"
@@ -36,11 +37,11 @@ class ReviewsController < ApplicationController
         flash[:message] = "You've already reviewed this book"
       else
         Review.create(content: params[:content].strip, book_id: params[:book_id], user_id: current_user.id)
-        flash[:message] = "Review succesfully posted"
         @book = Book.find(params[:book_id])
+        flash[:message] = "Review succesfully posted"
       end
     end
-    redirect to "/books/#{@book.slug}"
+    redirect "/books/#{@book.slug}"
   end
 
   get '/reviews/:id/edit' do
