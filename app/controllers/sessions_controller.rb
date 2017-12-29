@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
     if logged_in?
       redirect "/users/#{current_user.slug}"
     else
-      binding.pry
       erb :'/users/create_user'
     end
   end

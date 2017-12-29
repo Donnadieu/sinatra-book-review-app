@@ -13,54 +13,40 @@ describe SessionsController do
       params = {
         :name => "user test",
         :email => "test@email.com",
-        :password => "123456"
+        :password => "1234567"
       }
       post '/signup', params
       expect(last_response.location).to include("/users/user-test")
     end
 
     it 'does not let a user sign up without a username' do
-      params = {
-        :name => "",
-        :email => "test@email.com",
-        :password => "123456"
-      }
-      post '/signup', params
-      expect(last_response.location).to include('/signup')
+
+      visit '/signup'
+      expect(page.find_by_id("name")[:required].eql?('required')).to be_truthy
     end
 
     it 'does not let a user sign up without an email' do
-      params = {
-        :name => "user test",
-        :email => "",
-        :password => "123456"
-      }
-      post '/signup', params
-      expect(last_response.location).to include('/signup')
+
+      visit '/signup'
+      expect(page.find_by_id("email")[:required].eql?('required')).to be_truthy
     end
 
     it 'does not let a user sign up without a password' do
-      params = {
-        :name => "user test",
-        :email => "test@email.com",
-        :password => ""
-      }
-      post '/signup', params
-      expect(last_response.location).to include('/signup')
+
+      visit '/signup'
+      expect(page.find_by_id("password")[:required].eql?('required')).to be_truthy
     end
 
     it 'does not let a logged in user view the signup page' do
-      user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
-      params = {
-        :name => "User test",
-        :email => "test@email.com",
-        :password => "123456"
-      }
-      post '/signup', params
-      session = {}
-      session[:user_id] = user.id
-      get '/signup'
-      expect(last_response.location).to include('/users/user-test')
+      user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
+      visit '/login'
+
+      fill_in(:email, :with => "test@email.com")
+      fill_in(:password, :with => "1234567")
+      click_button 'Login'
+
+      visit '/signup'
+      expect(page.current_path).to include('/users/user-test')
     end
   end
 
@@ -71,10 +57,10 @@ describe SessionsController do
     end
 
     it 'loads the user show page after login' do
-      user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+      user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
       params = {
         :email => "test@email.com",
-        :password => "123456"
+        :password => "1234567"
       }
       post '/login', params
       expect(last_response.status).to eq(302)
@@ -84,11 +70,11 @@ describe SessionsController do
     end
 
     it 'does not let user view login page if already logged in' do
-      user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+      user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
 
       params = {
         :email => "test@email.com",
-        :password => "123456"
+        :password => "1234567"
       }
       post '/login', params
       session = {}
@@ -100,15 +86,15 @@ describe SessionsController do
 
   describe "logout" do
     it "lets a user logout if they are already logged in" do
-      user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+      user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
 
       params = {
         :email => "test@email.com",
-        :password => "123456"
+        :password => "1234567"
       }
       post '/login', params
       get '/logout'
-      expect(last_response.location).to include("/login")
+      expect(last_response.location).to include("/")
     end
 
     it 'does not let a user logout if not logged in' do
@@ -122,13 +108,13 @@ describe SessionsController do
     end
 
     it 'does load books if user is logged in' do
-      user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+      user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
 
 
       visit '/login'
 
       fill_in(:email, :with => "test@email.com")
-      fill_in(:password, :with => "123456")
+      fill_in(:password, :with => "1234567")
       click_button 'Login'
 
       visit  '/books'
