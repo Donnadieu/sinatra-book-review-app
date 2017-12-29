@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BooksController do
 
   before do
-    @user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+    @user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
     @author = Author.create(:name => "Paulo Coehlo")
     @book =  Book.create(:name => "The Alchemist", :author => @author)
   end
@@ -14,7 +14,7 @@ describe BooksController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/books"
@@ -37,7 +37,7 @@ describe BooksController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/books/#{@book.slug}"
