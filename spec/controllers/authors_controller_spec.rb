@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AuthorsController do
 
   before do
-    @user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+    @user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
     @author = Author.create(:name => "Paulo Coehlo")
     @book =  Book.create(:name => "The Alchemist", :author => @author)
   end
@@ -14,7 +14,7 @@ describe AuthorsController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
         visit "/authors"
         expect(page.status_code).to eq(200)
@@ -35,7 +35,7 @@ describe AuthorsController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/authors/#{@author.slug}"
