@@ -5,14 +5,14 @@ describe ReviewsController do
   describe 'new action' do
     context 'logged in' do
       it 'lets user view new review form if logged in' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
 
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/books/#{book.slug}"
@@ -20,19 +20,19 @@ describe ReviewsController do
         expect(page.body).to include('content')
       end
       it 'lets user create a review if they are logged in' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
 
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/books/#{book.slug}"
         fill_in(:content, :with => "It was good")
-        click_button 'submit'
+        click_button 'Submit'
 
         user = User.find_by(:email => "test@email.com")
         review = Review.find_by(:content => "It was good")
@@ -41,20 +41,20 @@ describe ReviewsController do
         expect(page.status_code).to eq(200)
       end
       it 'does not let a user create a blank review' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
 
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/books/#{book.slug}"
 
         fill_in(:content, :with => "")
-        click_button 'submit'
+        click_button 'Submit'
 
         expect(Review.find_by(:content => "")).to eq(nil)
         expect(page.current_path).to eq("/books/#{book.slug}")
@@ -72,7 +72,7 @@ describe ReviewsController do
   describe 'show action' do
     context 'logged in' do
       it 'displays a single review if it belongs to user' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
         review = Review.create(:content => "New review", :user_id => user.id, :book_id => book.id)
@@ -80,7 +80,7 @@ describe ReviewsController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/reviews/#{review.id}"
@@ -90,14 +90,14 @@ describe ReviewsController do
         expect(page.body).to include("Edit Review")
       end
       it 'does not let a user view a review from another user' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         user2 = User.create(:name => "User Test2", :email => "test@aol.com", :password => "789456")
         review = Review.create(:content => "It was good", :user_id => user2.id)
 
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         get "/reviews/#{review.id}"
@@ -107,7 +107,7 @@ describe ReviewsController do
     end
     context 'logged out' do
       it 'does not let a user view a review if logged out' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         review = Review.create(:content => "New review", :user_id => user.id)
         get "/reviews/#{review.id}"
         expect(last_response.location).to include("/login")
@@ -117,7 +117,7 @@ describe ReviewsController do
   describe 'edit action' do
     context "logged in" do
       it 'lets a user view review edit form if they are logged in' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
         review = Review.create(:content => "New review", :user_id => user.id, :book_id => book.id)
@@ -125,7 +125,7 @@ describe ReviewsController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
 
@@ -134,7 +134,7 @@ describe ReviewsController do
         expect(page.body).to include(review.content)
       end
       it 'does not let a user edit a review they did not create' do
-        user1 = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user1 = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         review1 = Review.create(:content => "reviewing!", :user_id => user1.id)
 
         user2 = User.create(:name => "User Test2", :email => "email@aol.com", :password => "789456")
@@ -143,7 +143,7 @@ describe ReviewsController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
         session = {}
         session[:user_id] = user1.id
@@ -151,7 +151,7 @@ describe ReviewsController do
         expect(page.current_path).to include("/users/#{user1.slug}")
       end
       it 'lets a user edit their own review if they are logged in' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
         review = Review.create(:content => "New review", :user_id => user.id, :book_id => book.id)
@@ -159,27 +159,26 @@ describe ReviewsController do
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/reviews/#{review.id}/edit"
         fill_in(:content, :with => "i love reviewing")
 
         click_button 'Edit Review'
-        # binding.pry
         expect(Review.find_by(:content => "i love reviewing")).to be_instance_of(Review)
         expect(Review.find_by(:content => "reviewing!")).to eq(nil)
         expect(page.status_code).to eq(200)
       end
       it 'does not let a user edit a text with blank content' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
         review = Review.create(:content => "New review", :user_id => user.id, :book_id => book.id)
         visit '/login'
 
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
         visit "/reviews/#{review.id}/edit"
 
@@ -201,14 +200,14 @@ describe ReviewsController do
   describe 'delete action' do
     context "logged in" do
       it 'lets a user delete their own review if they are logged in' do
-        user = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
+        user = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
         review = Review.create(:content => "New review", :user_id => user.id, :book_id => book.id)
 
         visit '/login'
         fill_in(:email, :with => "test@email.com")
-        fill_in(:password, :with => "123456")
+        fill_in(:password, :with => "1234567")
         click_button 'Login'
 
         visit "/reviews/#{review.id}"
@@ -218,8 +217,8 @@ describe ReviewsController do
         expect(Review.find_by(:content => "reviewing!")).to eq(nil)
       end
       it 'does not let a user delete a review they did not create' do
-        user1 = User.create(:name => "User Test", :email => "test@email.com", :password => "123456")
-        user2 = User.create(:name => "User Test2", :email => "email@aol.com", :password => "789456")
+        user1 = User.create(:name => "User Test", :email => "test@email.com", :password => "1234567")
+        user2 = User.create(:name => "User Test2", :email => "email@aol.com", :password => "7894561")
         author = Author.create(:name => "Paulo Coehlo")
         book =  Book.create(:name => "The Alchemist", :author => author)
         review = Review.create(:content => "New review", :user_id => user1.id, :book_id => book.id)
@@ -227,11 +226,10 @@ describe ReviewsController do
         visit '/login'
 
         fill_in(:email, :with => "email@aol.com")
-        fill_in(:password, :with => "789456")
+        fill_in(:password, :with => "7894561")
         click_button 'Login'
 
         visit "/reviews/#{review.id}"
-        binding.pry
         expect(page.status_code).to eq(200)
         expect(page.current_path).to include("/users/#{user2.slug}")
       end
