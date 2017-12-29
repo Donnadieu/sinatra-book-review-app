@@ -28,7 +28,7 @@
           <a href="/books/<%= review.book.slug %>"><h4><%= review.book.name %></h4></a>
         </div>
         <div class="review_content">
-          '"<%= review.content %>"'
+          "<%= review.content %>"
         </div>
         <div class="edit-review">
           <form action="/reviews/<%= review.id %>" method="get">

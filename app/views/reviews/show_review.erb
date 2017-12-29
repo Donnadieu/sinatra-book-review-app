@@ -10,10 +10,10 @@
     </div>
   </div>
 </div>
-<h1>Your review of <%= @review.book.name %></h1>
+<h1>Your review of</h1> <h2><%= @review.book.name %></h2>
 <div class="review-container">
-  <div class="review_content">
-    <p><%= @review.content %></p>
+  <div id="review_content">
+    <p>"<%= @review.content %>"</p>
   </div>
   <div class="edit-review">
     <form action="/reviews/<%= @review.id %>/edit" method="get">
