@@ -14,13 +14,13 @@
   <div class="review">
     <% @reviews.each do |review| %>
       <div class="review_book">
-        <a href="/books/<%= review.book.slug %>"><h4><%= review.book.name %></h4></a>
+        <a href="/books/<%= review.book.slug %>"><h3><%= review.book.name %></h3></a>
       </div>
       <div class="review_user">
         <h5>Review by <%= review.user.name %>:</h5>
       </div>
       <div class="review_content">
-        <p><%= review.content %></p>
+        <p>"<%= review.content %>"</p>
       </div>
       <% if current_user.id == review.user.id %>
         <div class="edit-review">

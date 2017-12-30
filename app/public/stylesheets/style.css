@@ -102,7 +102,6 @@ a {
 }
 
 h1 {
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   text-align: center;
   font-size: 3.5rem;
   line-height: 1.2;
@@ -127,6 +126,9 @@ p {
   font-size: 1.25rem;
   font-weight: bold;
 }
+
+/*////////// USER PAGES //////////*/
+
 .user-content > form:nth-child(n) > p > button {
   height: 60px;
   width: 300px;
@@ -142,6 +144,8 @@ p {
 .user-content > form:nth-child(n) > p > button:hover{
   background-color: white;
 }
+
+/*////////// AUTHOR PAGES //////////*/
 
 .author_books a:hover {
   color: white;
@@ -182,6 +186,8 @@ p {
   padding-bottom: 20px;
 }
 
+/*////////// BOOKS PAGES //////////*/
+
 .books-sidebar {
   text-align: center;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
@@ -212,7 +218,6 @@ p {
   padding-left: 50px;
   font-size: 0.25rem;
   width: 50%;
-  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
 }
 
 .line-separator{
@@ -235,6 +240,8 @@ p {
   font-size: .75rem;
   padding: 15px 150px;
 }
+
+/*////////// REVIEWS PAGES //////////*/
 
 .review_form-container {
   padding-bottom: 25px;

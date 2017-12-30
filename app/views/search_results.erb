@@ -1,3 +1,15 @@
+<div class="topnav">
+  <div class="topnav-left">
+    <a href="/" class="bar-button"><b>Book</b> Review Club</a>
+    <a href="/books" class="bar-button">Books</a>
+    <a href="/authors" class="bar-button">Authors</a>
+    <a href="/reviews" class="bar-button">Lastest Reviews</a>
+    <div class="topnav-right">
+      <a href="/logout" class="bar-button">Logout</a>
+      <a href="/users/<%= current_user.slug %>" class="bar-button">Profile</a>
+    </div>
+  </div>
+</div>
 <div class="search_results-container">
   <h1>Books Found</h1>
   <p class="flash_message">

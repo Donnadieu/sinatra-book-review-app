@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  use Rack::Flash
 
   post '/books/search' do
     BookScraper.search(params[:search_term])

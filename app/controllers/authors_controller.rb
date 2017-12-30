@@ -1,5 +1,6 @@
 class AuthorsController < ApplicationController
-
+  use Rack::Flash
+  
   get '/authors' do
     if logged_in?
       @selected_letter = params[:selected_letter]
